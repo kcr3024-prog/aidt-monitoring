@@ -1,0 +1,370 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filterBtn.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.alertsCard {
+  margin-top: 8px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sectionTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionTitleWrapper h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.sectionTitle {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.badge {
+  background: var(--color-danger);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.alertsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alertItem {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.alertItem.danger {
+  background: #fef2f2;
+  border-left-color: var(--color-danger);
+}
+
+.alertItem.warning {
+  background: #fffbeb;
+  border-left-color: var(--color-warning);
+}
+
+.alertIcon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.alertContent {
+  flex: 1;
+}
+
+.alertTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.alertMeta {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  display: flex;
+  gap: 8px;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.chartTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text);
+}
+
+.alertsTable {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: var(--color-bg);
+}
+
+.table th {
+  padding: 12px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+
+.table tbody tr {
+  transition: background 0.2s;
+}
+
+.table tbody tr:hover {
+  background: var(--color-bg);
+}
+
+.table tbody tr.danger {
+  background: #fef2f2;
+}
+
+.table tbody tr.warning {
+  background: #fffbeb;
+}
+
+.priority {
+  font-weight: 600;
+}
+
+.priorityBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.priorityBadge.danger {
+  background: #fef2f2;
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
+
+.priorityBadge.warning {
+  background: #fffbeb;
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
+}
+
+.alertTitle {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.statusBadge.pending {
+  background: #f3f4f6;
+  color: var(--color-text-secondary);
+}
+
+.systemGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.systemItem {
+  padding: 20px;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.systemHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.systemLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.systemTarget {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.systemValueWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.impact {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.time {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.systemValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.systemStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.systemStatus.success {
+  background: #ecfdf5;
+  color: var(--color-success);
+}
+
+.systemStatus.warning {
+  background: #fffbeb;
+  color: var(--color-warning);
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text);
+}
+
+.systemStatus {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.statusItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statusLabel {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.statusValue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.statusCheck,
+.statusWarning {
+  font-size: 16px;
+}

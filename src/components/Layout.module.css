@@ -1,0 +1,134 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  background: var(--color-card);
+  border-right: 1px solid var(--color-border);
+  padding: 24px 0;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.logo {
+  padding: 0 24px 24px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 16px;
+}
+
+.logo h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.logo p {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.navItem:hover {
+  background: var(--color-bg);
+}
+
+.navItem.active {
+  background: #eff6ff;
+  color: var(--color-primary);
+}
+
+.navGroup {
+  margin: 4px 0;
+}
+
+.navGroupHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.navGroupHeader:hover {
+  background: var(--color-bg);
+}
+
+.navGroupTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.chevron {
+  color: var(--color-text-secondary);
+  transition: transform 0.2s;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.navSubItems {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+  padding-left: 48px;
+}
+
+.navSubItem {
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.navSubItem:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.navSubItem.active {
+  background: #eff6ff;
+  color: var(--color-primary);
+}
+
+.main {
+  flex: 1;
+  margin-left: 260px;
+  padding: 32px;
+  max-width: 1600px;
+}

@@ -1,0 +1,100 @@
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card.sm {
+  padding: 16px;
+}
+
+.card.md {
+  padding: 24px;
+}
+
+.card.lg {
+  padding: 32px;
+}
+
+.metricCard {
+  position: relative;
+  transition: all 0.2s;
+}
+
+.metricCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.metricTitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.metricIcon {
+  color: var(--color-text-secondary);
+}
+
+.metricValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metricSubtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.statusBadge {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.statusBadge.success {
+  background: var(--color-success);
+}
+
+.statusBadge.warning {
+  background: var(--color-warning);
+}
+
+.statusBadge.danger {
+  background: var(--color-danger);
+}
+
+.statusBadge.info {
+  background: var(--color-info);
+}
+
+.trend {
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trendUp {
+  color: var(--color-success);
+}
+
+.trendDown {
+  color: var(--color-danger);
+}
