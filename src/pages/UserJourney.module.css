@@ -27,9 +27,9 @@
   gap: 12px;
   width: 100%;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  border: none;
+  background: white;
+  color: #6d28d9;
+  border: 2px solid #7c3aed;
   border-radius: var(--radius-md);
   font-size: 16px;
   font-weight: 600;
@@ -38,14 +38,16 @@
 }
 
 .suggestionBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
+  background: #f5f3ff;
+  border-color: #5b21b6;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
 }
 
 .suggestionBtn .badge {
   margin-left: auto;
   padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.25);
+  background: #7c3aed;
+  color: white;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
@@ -121,18 +123,32 @@
 .filterGroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .filterRow {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filterItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filterLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .filterSelect {
-  flex: 1;
-  min-width: 200px;
+  min-width: 160px;
   padding: 10px 14px;
   border: 1px solid var(--color-border);
   background: var(--color-card);
@@ -151,6 +167,68 @@
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.periodGroup {
+  display: flex;
+  gap: 6px;
+}
+
+.periodBtn {
+  padding: 9px 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.periodBtn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.periodBtn.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.dateRange {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateInput {
+  padding: 9px 14px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dateInput:hover {
+  border-color: var(--color-primary);
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.dateSeparator {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
 }
 
 /* 주요 여정 패턴 */
@@ -516,6 +594,14 @@
 
   .filterSelect {
     min-width: 100%;
+  }
+
+  .periodGroup {
+    flex-wrap: wrap;
+  }
+
+  .dateRange {
+    flex-wrap: wrap;
   }
 
   .journeyHeader {

@@ -424,7 +424,7 @@
 /* Top Features Grid */
 .topFeaturesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 24px;
 }
@@ -461,6 +461,31 @@
 .featureItem.critical {
   background: #fef2f2;
   border-color: var(--color-danger);
+}
+
+.featureItem.warningItem {
+  background: #fffbeb;
+  border-color: var(--color-warning);
+}
+
+.featureItem.warningItem:hover {
+  border-color: var(--color-warning);
+}
+
+.warningRank {
+  background: var(--color-warning) !important;
+  font-size: 16px;
+}
+
+.warningIcon {
+  color: var(--color-warning);
+}
+
+.featureTrend {
+  font-size: 12px;
+  color: var(--color-warning);
+  margin-top: 4px;
+  font-weight: 600;
 }
 
 .featureRank {
@@ -715,6 +740,34 @@
   min-width: 120px;
 }
 
+/* AI 기능 목록 */
+.aiFeatureOverview {
+  margin-bottom: 28px;
+}
+
+.aiTagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.aiTag {
+  padding: 6px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: all 0.2s;
+}
+
+.aiTag:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: #eff6ff;
+}
+
 /* AI 우선순위 */
 .aiPrioritySection {
   margin-bottom: 32px;
@@ -844,5 +897,11 @@
   .topFeaturesGrid,
   .chartsGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .topFeaturesGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }

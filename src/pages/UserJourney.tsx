@@ -2,22 +2,29 @@ import { useState } from 'react'
 import { Card } from '../components/Card'
 import AIInsight from '../components/AIInsight'
 import PageHeader from '../components/PageHeader'
-import { ArrowRight, AlertTriangle, TrendingUp, Filter } from 'lucide-react'
+import { ArrowRight, AlertTriangle, Lightbulb, Filter } from 'lucide-react'
 import { exportToExcel, printReport } from '../utils/exportUtils'
 import styles from './UserJourney.module.css'
 
 const UserJourney = () => {
   const [showAISuggestions, setShowAISuggestions] = useState(false)
+  const [subject, setSubject] = useState('all')
+  const [target, setTarget] = useState('student')
+  const [period, setPeriod] = useState('3months')
+  const [customDateStart, setCustomDateStart] = useState('')
+  const [customDateEnd, setCustomDateEnd] = useState('')
 
   // 주요 여정 패턴
-  const topJourneys = [
+  const allJourneys = [
     {
       name: '일반 학습 패턴',
       users: 2450,
       percentage: 34,
       path: '로그인 → 학생 홈 → GNB/교과서 → 목차 → 수업 컨텐츠 → 문제풀이',
       avgTime: '18분',
-      completion: 67
+      completion: 67,
+      subject: 'math',
+      target: 'student'
     },
     {
       name: '과제 수행 패턴',
@@ -25,7 +32,9 @@ const UserJourney = () => {
       percentage: 26,
       path: '로그인 → 수업 시작 알림 → GNB/과제 → 과제 안내 → 과제 수행 → 제출',
       avgTime: '12분',
-      completion: 89
+      completion: 89,
+      subject: 'all',
+      target: 'student'
     },
     {
       name: '평가 응시 패턴',
@@ -33,7 +42,9 @@ const UserJourney = () => {
       percentage: 17,
       path: '로그인 → 학생 홈 → 평가 현황 → 평가 안내 → 평가 응시 → 제출',
       avgTime: '25분',
-      completion: 92
+      completion: 92,
+      subject: 'math',
+      target: 'student'
     },
     {
       name: 'AI 맞춤 학습 패턴',
@@ -41,9 +52,38 @@ const UserJourney = () => {
       percentage: 12,
       path: '로그인 → GNB/교과서 → AI 맞춤 학습 → 문제풀이 → 재출제 → 문제풀이',
       avgTime: '15분',
-      completion: 43
+      completion: 43,
+      subject: 'math',
+      target: 'student'
+    },
+    {
+      name: '스피킹 연습 패턴',
+      users: 678,
+      percentage: 9,
+      path: '로그인 → GNB/교과서 → AI 스피킹 → 발음 연습 → 결과 확인',
+      avgTime: '10분',
+      completion: 72,
+      subject: 'english',
+      target: 'student'
+    },
+    {
+      name: '수업 관리 패턴',
+      users: 1120,
+      percentage: 15,
+      path: '로그인 → 교사 홈 → 수업자료실 → 수업진행 → 학생 관리',
+      avgTime: '22분',
+      completion: 85,
+      subject: 'all',
+      target: 'teacher'
     }
   ]
+
+  // 필터 적용
+  const topJourneys = allJourneys.filter(j => {
+    const matchSubject = subject === 'all' || j.subject === 'all' || j.subject === subject
+    const matchTarget = target === 'all' || j.target === target
+    return matchSubject && matchTarget
+  })
 
   // 여정 시각화 데이터
   const journeyFlow = {
@@ -203,7 +243,7 @@ const UserJourney = () => {
           className={styles.suggestionBtn}
           onClick={() => setShowAISuggestions(!showAISuggestions)}
         >
-          <TrendingUp size={18} />
+          <Lightbulb size={18} />
           AI 인사이트 제안 보기
           <span className={styles.badge}>{aiSuggestions.length}개</span>
         </button>
@@ -238,39 +278,73 @@ const UserJourney = () => {
         </h3>
         <div className={styles.filterGroup}>
           <div className={styles.filterRow}>
-            <select className={styles.filterSelect}>
-              <option>교과: 수학</option>
-              <option>교과: 영어</option>
-              <option>교과: 전체</option>
-            </select>
-            <select className={styles.filterSelect}>
-              <option>대상: 학생</option>
-              <option>대상: 교사</option>
-              <option>대상: 전체</option>
-            </select>
-            <select className={styles.filterSelect}>
-              <option>기간: 12월</option>
-              <option>기간: 11월</option>
-              <option>기간: 최근 3개월</option>
-            </select>
+            <div className={styles.filterItem}>
+              <label className={styles.filterLabel}>교과</label>
+              <select
+                className={styles.filterSelect}
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              >
+                <option value="all">전체</option>
+                <option value="math">수학</option>
+                <option value="english">영어</option>
+              </select>
+            </div>
+            <div className={styles.filterItem}>
+              <label className={styles.filterLabel}>대상</label>
+              <select
+                className={styles.filterSelect}
+                value={target}
+                onChange={(e) => setTarget(e.target.value)}
+              >
+                <option value="all">전체</option>
+                <option value="student">학생</option>
+                <option value="teacher">교사</option>
+              </select>
+            </div>
+            <div className={styles.filterItem}>
+              <label className={styles.filterLabel}>기간</label>
+              <div className={styles.periodGroup}>
+                <button
+                  className={`${styles.periodBtn} ${period === '3months' ? styles.active : ''}`}
+                  onClick={() => { setPeriod('3months'); setCustomDateStart(''); setCustomDateEnd(''); }}
+                >
+                  최근 3개월
+                </button>
+                <button
+                  className={`${styles.periodBtn} ${period === '6months' ? styles.active : ''}`}
+                  onClick={() => { setPeriod('6months'); setCustomDateStart(''); setCustomDateEnd(''); }}
+                >
+                  최근 6개월
+                </button>
+                <button
+                  className={`${styles.periodBtn} ${period === 'custom' ? styles.active : ''}`}
+                  onClick={() => setPeriod('custom')}
+                >
+                  직접 설정
+                </button>
+              </div>
+            </div>
           </div>
-          <div className={styles.filterRow}>
-            <select className={styles.filterSelect}>
-              <option>시작점: 로그인</option>
-              <option>시작점: 수업 알림</option>
-              <option>시작점: 전체</option>
-            </select>
-            <select className={styles.filterSelect}>
-              <option>종료점: 전체</option>
-              <option>종료점: 과제 완료</option>
-              <option>종료점: 로그아웃</option>
-            </select>
-            <select className={styles.filterSelect}>
-              <option>최소 사용자 수: 100명 이상</option>
-              <option>최소 사용자 수: 500명 이상</option>
-              <option>최소 사용자 수: 1000명 이상</option>
-            </select>
-          </div>
+          {period === 'custom' && (
+            <div className={styles.filterRow}>
+              <div className={styles.dateRange}>
+                <input
+                  type="date"
+                  className={styles.dateInput}
+                  value={customDateStart}
+                  onChange={(e) => setCustomDateStart(e.target.value)}
+                />
+                <span className={styles.dateSeparator}>~</span>
+                <input
+                  type="date"
+                  className={styles.dateInput}
+                  value={customDateEnd}
+                  onChange={(e) => setCustomDateEnd(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </Card>
 

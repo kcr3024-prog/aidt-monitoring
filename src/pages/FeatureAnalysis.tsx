@@ -96,7 +96,7 @@ const FeatureAnalysis = () => {
       action: '출제 알고리즘 전면 개선 필요'
     },
     {
-      name: 'AI 총평/평어',
+      name: 'AI 평어',
       subject: '수학',
       target: '교사',
       sessions: 74,
@@ -132,7 +132,7 @@ const FeatureAnalysis = () => {
       action: '모니터링 지속'
     },
     {
-      name: 'AI 발음분석',
+      name: 'AI 스피킹',
       subject: '영어',
       target: '학생',
       sessions: 1358,
@@ -142,13 +142,25 @@ const FeatureAnalysis = () => {
       status: '🔍 분석필요',
       priority: 5,
       action: '연습 vs 오류 구분 필요'
+    },
+    {
+      name: 'AI 라이팅',
+      subject: '영어',
+      target: '학생',
+      sessions: 512,
+      trend: '+85% ↗️',
+      retryRate: 22,
+      avgRetries: 1.8,
+      status: '🟢 양호',
+      priority: 6,
+      action: '피드백 정확도 모니터링'
     }
   ]
 
   const aiInsights = [
     'AI 맞춤학습 재시도율 99%는 심각한 수준입니다. 출제 알고리즘의 난이도 조정 및 문제 다양성 개선이 시급합니다.',
     '교과서>목차 이탈률 35%는 사용자가 원하는 콘텐츠를 찾지 못하고 있음을 의미합니다. 목차 구조 개선이 필요합니다.',
-    'AI 발음분석 사용량이 9월 대비 566% 급증했습니다. 사용자 수요가 높은 핵심 기능으로 자리잡고 있습니다.',
+    'AI 스피킹 사용량이 9월 대비 566% 급증했습니다. 사용자 수요가 높은 핵심 기능으로 자리잡고 있습니다.',
     '수학 과목 사용률이 62.4%로 영어(37.6%)보다 높지만, 영어의 이탈률이 더 높아 UX 개선이 필요합니다.'
   ]
 
@@ -288,6 +300,27 @@ const FeatureAnalysis = () => {
           </div>
 
           <div>
+            <h3 className={styles.subTitle}>🟡 주의 필요 기능 (고사용 + 고이탈)</h3>
+            <div className={styles.featureList}>
+              {warningFeatures.map((item, index) => (
+                <div key={index} className={`${styles.featureItem} ${styles.warningItem}`}>
+                  <div className={`${styles.featureRank} ${styles.warningRank}`}>⚠</div>
+                  <div className={styles.featureInfo}>
+                    <div className={styles.featureName}>{item.feature}</div>
+                    <div className={styles.featureMeta}>
+                      사용률 {item.usage}% · 이탈률 {item.bounce}%
+                    </div>
+                    <div className={styles.featureTrend}>{item.trend}</div>
+                  </div>
+                  <div className={styles.featureStatus}>
+                    <AlertTriangle size={18} className={styles.warningIcon} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
             <h3 className={styles.subTitle}>🔴 심각 기능 (즉시 개선 필요)</h3>
             <div className={styles.featureList}>
               {criticalFeatures.map((item, index) => (
@@ -365,8 +398,20 @@ const FeatureAnalysis = () => {
       <Card>
         <h2 className={styles.sectionTitle}>
           <Sparkles size={20} />
-          AI 기능 집중 분석
+          AI 기능 분석
         </h2>
+
+        <div className={styles.aiFeatureOverview}>
+          <h3 className={styles.subTitle}>📋 AI 기능 목록</h3>
+          <div className={styles.aiTagList}>
+            <span className={styles.aiTag}>AI 맞춤 학습</span>
+            <span className={styles.aiTag}>AI 평어</span>
+            <span className={styles.aiTag}>AI 출제(과제)</span>
+            <span className={styles.aiTag}>AI 출제(평가)</span>
+            <span className={styles.aiTag}>AI 스피킹</span>
+            <span className={styles.aiTag}>AI 라이팅</span>
+          </div>
+        </div>
 
         <div className={styles.aiPrioritySection}>
           <h3 className={styles.subTitle}>🎯 우선순위 액션 리스트</h3>
@@ -385,7 +430,7 @@ const FeatureAnalysis = () => {
                   {item.avgRetries > 0 && <span>평균 횟수: <strong>{item.avgRetries}회</strong></span>}
                   <span className={styles.aiStatus}>{item.status}</span>
                 </div>
-                <div className={styles.aiPriorityAction}>→ {item.action}</div>
+                <div className={styles.aiPriorityAction}>💡 AI 제안: {item.action}</div>
               </div>
             </div>
           ))}
